@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="60dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/bottomDialog"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Bottom Dialog"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/centerDialog"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/bottomDialog"
+        android:text="Center Dialog"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/topDialog"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/centerDialog"
+        android:text="Top Dialog"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/leftDialog"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/topDialog"
+        android:text="Left Dialog"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/rightDialog"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/leftDialog"
+        android:text="Right Dialog"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/fullscreenDialog"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/rightDialog"
+        android:text="FullScreen Dialog"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/outTouchableDialog"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/fullscreenDialog"
+        android:text="OutTouchable Dialog"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/slidableDialog"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/outTouchableDialog"
+        android:text="Slidable Dialog"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false" />
+
+</RelativeLayout>
