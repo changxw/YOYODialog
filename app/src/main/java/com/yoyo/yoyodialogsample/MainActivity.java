@@ -2,6 +2,7 @@ package com.yoyo.yoyodialogsample;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new YOYODialog.Builder(this)
                         .setContentView(new DialogContentView(this))
                         .setCancelable(true)
+                        .setNavigationBarColor(Color.GREEN)
                         .setDialogStyle(YOYODialog.DialogStyle.BOTTOM)
                         .setFullscreen(false)
                         .setOutsideTouchable(false)

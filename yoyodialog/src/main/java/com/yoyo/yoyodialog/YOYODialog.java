@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.yoyo.yoyodialog.touchProcessor.BottomTouchProcessor;
 import com.yoyo.yoyodialog.touchProcessor.CenterTouchProcessor;
@@ -69,9 +70,15 @@ public class YOYODialog extends Dialog {
         private YOYODialogView contentView;
         private OnDismissListener onDismissListener;
         private boolean slidingDismiss = false;
+        private int navigationBarColor = Color.TRANSPARENT;
 
         public Builder(Context context) {
             this.context = context;
+        }
+
+        public Builder setNavigationBarColor(int navigationBarColor) {
+            this.navigationBarColor = navigationBarColor;
+            return this;
         }
 
         public Builder setSlidingDismiss(boolean slidingDismiss) {
@@ -130,6 +137,7 @@ public class YOYODialog extends Dialog {
     private List<OnDismissListener> onDismissListeners = new ArrayList<>();
     private List<TouchProcessor> touchProcessors = new ArrayList<>();
     private final float defaultDimAmount = 0.4f;
+    private View navigationBarView;
 
     private YOYODialog(@NonNull Context context, Builder builder) {
         super(context);
@@ -234,6 +242,7 @@ public class YOYODialog extends Dialog {
                     case BOTTOM:
                         initialPadding.bottom += insets.getSystemWindowInsetBottom();
                         initialPadding.applyToView(contentView);
+                        showNavigationBar(insets.getSystemWindowInsetBottom());
                         break;
                     case CENTER:
                         contentView.post(new Runnable() {
@@ -243,11 +252,12 @@ public class YOYODialog extends Dialog {
                             }
                         });
                         break;
-                    case FULLSCREEN:
+                    case FULLSCREEN: {
                         initialPadding.bottom += insets.getSystemWindowInsetBottom();
                         initialPadding.applyToView(contentView);
+                        showNavigationBar(insets.getSystemWindowInsetBottom());
                         break;
-                    case TOP:
+                    }case TOP:
                         break;
                     case SPECIFIC:
                         break;
@@ -258,6 +268,16 @@ public class YOYODialog extends Dialog {
                 return insets;
             }
         });
+    }
+
+    private void showNavigationBar(int height){
+        if (height <= 0) return;
+
+        navigationBarView = new View(getContext());
+        navigationBarView.setBackgroundColor(builder.navigationBarColor);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+        layoutParams.gravity = Gravity.BOTTOM;
+        getWindow().addContentView(navigationBarView, layoutParams);
     }
 
     @Override

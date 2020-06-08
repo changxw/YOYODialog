@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 public class YOYODialogView extends CustomFrameLayout implements OnDismissListener {
     private List<OnDismissListener> onDismissListeners = new ArrayList<>();
     private YOYODialog yoyoDialog;
-    private boolean isCancelable = true;
 
     public YOYODialogView(@NonNull Context context) {
         super(context);
@@ -35,7 +34,7 @@ public class YOYODialogView extends CustomFrameLayout implements OnDismissListen
         onDismissListeners.add(listener);
     }
 
-    public void setYoyoDialog(YOYODialog dialog) {
+    void setYoyoDialog(YOYODialog dialog) {
         this.yoyoDialog = dialog;
     }
 
