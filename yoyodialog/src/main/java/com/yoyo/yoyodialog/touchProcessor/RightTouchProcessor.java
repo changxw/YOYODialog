@@ -65,20 +65,20 @@ public class RightTouchProcessor extends TouchProcessor {
     }
 
 
-    private void smoothDismiss(final YOYODialog dialog, final float offsetX, final float slope) {
+    private void smoothDismiss(final YOYODialog dialog, final int offsetX, final float slope) {
         final View contentView = dialog.getContentView();
         final Rect originalRect = dialog.getContentRect();
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, offsetX).setDuration(400);
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(0, offsetX).setDuration(400);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            private float lastX = 0;
-            private float lastY = 0;
+            private int lastX = 0;
+            private int lastY = 0;
 
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                float currX = (float) animation.getAnimatedValue();
-                float currY = currX * slope;
-                float deltaY = currY - lastY;
-                float deltaX = currX - lastX;
+                int currX = (int) animation.getAnimatedValue();
+                int currY = (int) (currX * slope);
+                int deltaY = currY - lastY;
+                int deltaX = currX - lastX;
                 lastX = currX;
                 lastY = currY;
                 ViewCompat.offsetTopAndBottom(contentView, (int) deltaY);
@@ -100,19 +100,19 @@ public class RightTouchProcessor extends TouchProcessor {
         valueAnimator.start();
     }
 
-    private void smoothBack(YOYODialog dialog, float offsetX, final float slope) {
+    private void smoothBack(YOYODialog dialog, int offsetX, final float slope) {
         final View contentView = dialog.getContentView();
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, offsetX).setDuration(400);
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(0, offsetX).setDuration(400);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            private float lastX = 0;
-            private float lastY = 0;
+            private int lastX = 0;
+            private int lastY = 0;
 
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                float currX = (float) animation.getAnimatedValue();
-                float currY = currX * slope;
-                float deltaY = currY - lastY;
-                float deltaX = currX - lastX;
+                int currX = (int) animation.getAnimatedValue();
+                int currY = (int) (currX * slope);
+                int deltaY = currY - lastY;
+                int deltaX = currX - lastX;
                 lastX = currX;
                 lastY = currY;
                 ViewCompat.offsetTopAndBottom(contentView, (int) deltaY);
