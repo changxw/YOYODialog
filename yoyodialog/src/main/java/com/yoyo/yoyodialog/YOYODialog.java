@@ -63,7 +63,6 @@ public class YOYODialog extends Dialog {
         private Context context;
         private boolean cancelable = true;
         private DialogStyle dialogStyle = DialogStyle.BOTTOM;
-        private boolean fullscreen = false;
         private boolean outsideTouchable = false;
         private int windowAnimations;
         private int layoutResId;
@@ -111,11 +110,6 @@ public class YOYODialog extends Dialog {
             return this;
         }
 
-        public Builder setFullscreen(boolean fullscreen) {
-            this.fullscreen = fullscreen;
-            return this;
-        }
-
         public Builder setOutsideTouchable(boolean outsideTouchable) {
             this.outsideTouchable = outsideTouchable;
             return this;
@@ -136,7 +130,7 @@ public class YOYODialog extends Dialog {
     private Builder builder;
     private List<OnDismissListener> onDismissListeners = new ArrayList<>();
     private List<TouchProcessor> touchProcessors = new ArrayList<>();
-    private final float defaultDimAmount = 0.4f;
+    private final float defaultDimAmount = 0.0f;
     private View navigationBarView;
 
     private YOYODialog(@NonNull Context context, Builder builder) {
@@ -192,7 +186,9 @@ public class YOYODialog extends Dialog {
         if (builder.outsideTouchable) {
             getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         } else {
-            getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            int width = (builder.dialogStyle == DialogStyle.TOP || builder.dialogStyle == DialogStyle.BOTTOM || builder.dialogStyle == DialogStyle.CENTER || builder.dialogStyle == DialogStyle.FULLSCREEN) ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT;
+            int height = (builder.dialogStyle == DialogStyle.LEFT || builder.dialogStyle == DialogStyle.RIGHT || builder.dialogStyle == DialogStyle.FULLSCREEN || (builder.dialogStyle == DialogStyle.CENTER && builder.slidingDismiss)) ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT;
+            getWindow().setLayout(width, height);
         }
 
         getWindow().setDimAmount(defaultDimAmount);
@@ -219,7 +215,7 @@ public class YOYODialog extends Dialog {
 
     private FrameLayout.LayoutParams createLayoutParams() {
         FrameLayout.LayoutParams layoutParams;
-        if (builder.fullscreen) {
+        if (builder.dialogStyle == DialogStyle.FULLSCREEN) {
             layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             layoutParams.gravity = Gravity.TOP;
         } else {
@@ -232,7 +228,7 @@ public class YOYODialog extends Dialog {
     }
 
     private void applyWindowInsets(final View contentView) {
-        Activity activity = (Activity) builder.context;
+        final Activity activity = (Activity) builder.context;
         ViewUtils.doOnApplyWindowInsets(activity.getWindow().getDecorView(), new ViewUtils.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View view, final WindowInsetsCompat insets, ViewUtils.RelativePadding initialPadding) {

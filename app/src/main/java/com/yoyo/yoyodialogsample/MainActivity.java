@@ -32,9 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new YOYODialog.Builder(this)
                         .setContentView(new DialogContentView(this))
                         .setCancelable(true)
-                        .setNavigationBarColor(Color.GREEN)
+                        .setNavigationBarColor(getColor(R.color.colorAccent))
                         .setDialogStyle(YOYODialog.DialogStyle.BOTTOM)
-                        .setFullscreen(false)
                         .setOutsideTouchable(false)
                         .setSlidingDismiss(true)
                         .build().show();
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContentView(new DialogContentView(this))
                         .setCancelable(true)
                         .setDialogStyle(YOYODialog.DialogStyle.CENTER)
-                        .setFullscreen(false)
                         .setOutsideTouchable(false)
                         .setSlidingDismiss(false)
                         .build().show();
@@ -54,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContentView(new DialogContentView(this))
                         .setCancelable(true)
                         .setDialogStyle(YOYODialog.DialogStyle.TOP)
-                        .setFullscreen(false)
                         .setOutsideTouchable(false)
                         .setSlidingDismiss(true)
                         .build().show();
@@ -64,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContentView(new DialogHorView(this))
                         .setCancelable(true)
                         .setDialogStyle(YOYODialog.DialogStyle.LEFT)
-                        .setFullscreen(false)
                         .setOutsideTouchable(false)
                         .setSlidingDismiss(true)
                         .build().show();
@@ -74,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContentView(new DialogHorView(this))
                         .setCancelable(true)
                         .setDialogStyle(YOYODialog.DialogStyle.RIGHT)
-                        .setFullscreen(false)
                         .setOutsideTouchable(false)
                         .setSlidingDismiss(true)
                         .build().show();
@@ -84,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContentView(new DialogFullScreenView(this))
                         .setCancelable(true)
                         .setDialogStyle(YOYODialog.DialogStyle.FULLSCREEN)
-                        .setFullscreen(true)
                         .setOutsideTouchable(false)
                         .setSlidingDismiss(false)
                         .build().show();
@@ -94,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContentView(new DialogContentView(this))
                         .setCancelable(true)
                         .setDialogStyle(YOYODialog.DialogStyle.BOTTOM)
-                        .setFullscreen(false)
                         .setOutsideTouchable(true)
                         .setSlidingDismiss(true)
                         .build().show();
@@ -104,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContentView(new DialogContentView(this))
                         .setCancelable(true)
                         .setDialogStyle(YOYODialog.DialogStyle.CENTER)
-                        .setFullscreen(false)
                         .setOutsideTouchable(false)
                         .setSlidingDismiss(true)
                         .build().show();
