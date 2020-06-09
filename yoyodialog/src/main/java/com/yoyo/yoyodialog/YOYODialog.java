@@ -29,6 +29,7 @@ import java.util.List;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -129,8 +130,7 @@ public class YOYODialog extends Dialog {
     private Builder builder;
     private List<OnDismissListener> onDismissListeners = new ArrayList<>();
     private List<TouchProcessor> touchProcessors = new ArrayList<>();
-    private final float defaultDimAmount = 0.0f;
-    private View navigationBarView;
+    private final float defaultDimAmount = 0.4f;
 
     private YOYODialog(@NonNull Context context, Builder builder) {
         super(context);
@@ -268,8 +268,11 @@ public class YOYODialog extends Dialog {
     private void showNavigationBar(int height){
         if (height <= 0) return;
 
-        navigationBarView = new View(getContext());
+        View navigationBarView = View.inflate(builder.context, R.layout.layout_navigationbar, null);
         navigationBarView.setBackgroundColor(builder.navigationBarColor);
+        double light = ColorUtils.calculateLuminance(builder.navigationBarColor);
+        int blendColor = light < 0.6 ? Color.WHITE : Color.BLACK;
+        navigationBarView.findViewById(R.id.divider).setBackgroundColor(ColorUtils.blendARGB(builder.navigationBarColor, blendColor, 0.5f));
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
         layoutParams.gravity = Gravity.BOTTOM;
         getWindow().addContentView(navigationBarView, layoutParams);
